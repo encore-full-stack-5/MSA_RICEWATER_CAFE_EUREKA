@@ -22,7 +22,7 @@ public class AuthController {
         return authService.insertUser(userInfoFromToken);
     }
 
-    @GetMapping("/refresh")
+    @PostMapping("/refresh")
     public String getMe(@AuthenticationPrincipal User user){
         return "test";
     }

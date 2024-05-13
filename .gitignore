@@ -6,3 +6,10 @@
 *.iml
 out
 gen
+.tmp
+caches
+daemon
+jdks
+native
+wrapper
+

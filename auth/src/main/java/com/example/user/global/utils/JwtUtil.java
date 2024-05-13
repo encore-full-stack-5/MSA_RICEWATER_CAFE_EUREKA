@@ -13,6 +13,7 @@ import java.util.Date;
 
 @Component
 public class JwtUtil {
+
     private final Long expiration;
     private final SecretKey secretKey;
 
@@ -44,8 +45,8 @@ public class JwtUtil {
 
 
     public JwtUtil(
-            @Value("${jwt.secret}") String secret,
-            @Value("${jwt.expiration}") Long expiration
+            @Value("${token.secret}") String secret,
+            @Value("${token.expiration}") Long expiration
     ) {
         this.expiration = expiration;
         this.secretKey = Keys.hmacShaKeyFor(secret.getBytes());
