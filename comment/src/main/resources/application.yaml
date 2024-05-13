@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: comment
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/comment
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+server:
+  port: 0
+eureka:
+  client:
+    service-url:
+      defaultZon: http://localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: Hi:imComment

@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: cafe_gateway
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowed-origins: "*"
+            allowed-methods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowed-headers: "*"
+      routes:
+        - id: category
+          uri: lb://CATEGORY
+          predicates:
+            - Path=/api/v1/categories/**
+        - id: member
+          uri: lb://MEMBER
+          predicates:
+            - Path=/api/v1/members/**
+        - id: board
+          uri: lb://BOARD
+          predicates:
+            - Path=/api/v1/boards/**
+        - id: cafe
+          uri: lb://CAFE
+          predicates:
+            - Path=/api/v1/cafes/**
+        - id: comment
+          uri: lb://COMMENT
+          predicates:
+            - Path=/api/v1/comments/**
+        - id: auth
+          uri: lb://AUTH
+          predicates:
+            - Path=/api/v1/auth/**
+server:
+  port: 8000
