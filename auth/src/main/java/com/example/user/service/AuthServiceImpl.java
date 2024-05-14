@@ -19,6 +19,9 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService, UserDetailsService {
     private final UserRepository userRepository;
+    private final TokenService tokenService;
+
+
 
     private final JwtUtil jwtUtil;
     @Override
@@ -30,10 +33,12 @@ public class AuthServiceImpl implements AuthService, UserDetailsService {
     }
 
     @Override
-    public SignInResponse insertUser(UserDto req) {
-        boolean existsById = userRepository.existsById(UUID.fromString(req.id()));
-        if(!existsById) userRepository.save(new User().toEntity(req));
-        String generatedToken = jwtUtil.generateToken(req);
+    public SignInResponse insertUser(String token) {
+        UserDto userInfoFromToken = tokenService.getUserInfoFromToken(token);
+
+        boolean existsById = userRepository.existsById(UUID.fromString(userInfoFromToken.id()));
+        if(!existsById) userRepository.save(new User().toEntity(userInfoFromToken));
+        String generatedToken = jwtUtil.generateToken(userInfoFromToken);
         return SignInResponse.from(generatedToken);
     }
 
