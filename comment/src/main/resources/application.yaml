@@ -2,9 +2,9 @@ spring:
   application:
     name: comment
   datasource:
-    url: jdbc:h2:tcp://localhost/~/comment
-    username: sa
-    password:
+    url: jdbc:mysql://localhost:3306/comment?serverTimezone=Asia/Seoul
+    username: root
+    password: 1234
   jpa:
     hibernate:
       ddl-auto: create
