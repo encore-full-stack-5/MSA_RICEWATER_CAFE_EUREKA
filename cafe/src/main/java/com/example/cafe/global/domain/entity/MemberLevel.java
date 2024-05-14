@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "MEMBER_LEVEL")
+@Table(name = "MEMBER_LEVELS")
 public class MemberLevel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

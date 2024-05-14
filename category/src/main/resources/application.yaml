@@ -2,7 +2,7 @@ spring:
   application:
     name: category
   datasource:
-    url: jdbc:mysql://localhost:3306/category?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://localhost:3306/categories?serverTimezone=Asia/Seoul
     username: root
     password: 1234
   jpa:

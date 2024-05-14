@@ -2,7 +2,7 @@ spring:
   application:
     name: comment
   datasource:
-    url: jdbc:mysql://localhost:3306/comment?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://localhost:3306/comments?serverTimezone=Asia/Seoul
     username: root
     password: 1234
   jpa:
