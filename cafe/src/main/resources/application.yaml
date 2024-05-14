@@ -2,12 +2,12 @@ spring:
   application:
     name: cafe
   datasource:
-    url: jdbc:h2:tcp://localhost/~/cafe
-    username: sa
-    password:
+    url: jdbc:mysql://localhost:3306/cafe?serverTimezone=Asia/Seoul
+    username: root
+    password: 1234
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: create
     show-sql: true
     properties:
       hibernate:

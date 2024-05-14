@@ -2,9 +2,9 @@ spring:
   application:
     name: category
   datasource:
-    url: jdbc:h2:tcp://localhost/~/category
-    username: sa
-    password:
+    url: jdbc:mysql://localhost:3306/category?serverTimezone=Asia/Seoul
+    username: root
+    password: 1234
   jpa:
     hibernate:
       ddl-auto: create
