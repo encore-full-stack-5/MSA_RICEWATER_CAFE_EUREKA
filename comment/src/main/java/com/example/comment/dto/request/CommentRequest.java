@@ -9,13 +9,14 @@ public record CommentRequest(
         Long boardId,
         Long memberId
 ) {
-    public Comment toEntity() {
+    public Comment toEntity(Boolean visibility) {
         return Comment.builder()
                 .id(null)
                 .content(content)
                 .createdAt(LocalDateTime.now())
                 .boardId(boardId)
                 .memberId(memberId)
+                .visibility(visibility)
                 .build();
     }
 }
