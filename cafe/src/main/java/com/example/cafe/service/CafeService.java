@@ -10,6 +10,8 @@ import java.util.List;
 public interface CafeService {
     void createCafe(CafeRequest request);
 
+//    void emailSender(String email);
+
     Page<CafeResponse> getAllCafeByManagerId(Long uid, Pageable pageRequest);
     Page<CafeResponse> getAllCafeByCafeName(String query, Pageable pageRequest);
     CafeResponse getCafeByCafeId(Long cafeId);

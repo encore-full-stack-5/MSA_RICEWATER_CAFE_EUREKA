@@ -6,5 +6,5 @@ import com.example.user.global.dto.UserDto;
 
 
 public interface AuthService {
-    SignInResponse insertUser(UserDto req);
+    SignInResponse insertUser(String token);
 }

@@ -4,20 +4,27 @@ import com.example.cafe.dto.request.CafeRequest;
 import com.example.cafe.dto.response.CafeResponse;
 import com.example.cafe.excrption.NotFoundCafeException;
 import com.example.cafe.global.domain.entity.Cafe;
+import com.example.cafe.global.domain.entity.EmailSender;
 import com.example.cafe.global.domain.repository.CafeRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.util.Optional;
+import java.util.Properties;
 
 @Service
 @RequiredArgsConstructor
 public class CafeServiceImpl implements CafeService {
     private final CafeRepository cafeRepository;
     private final MemberLevelService memberLevelService;
+    private final EmailSender emailSender;
 
 //    카페 생성
     @Transactional
@@ -28,9 +35,18 @@ public class CafeServiceImpl implements CafeService {
         Cafe savedCafe = cafeRepository.save(cafeEntity);
         // 카페 생성 후 default MemberLevel 테이블 생성
         memberLevelService.createDefaultMemberLevel(savedCafe);
+        String email = "kkshyun56@gmail.com"; // 임시로 이렇게 해놓음 토큰 까서 이름이랑 이메일 받는거 넣어야 함
+        String name = "ssal";
+        try{
+            emailSender.emailSender(name,email, request.name());
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
-//    managerId로 모든 카페리스트 가져오기 ( 내가 Manager인 카페 보기)
+
+
+    //    managerId로 모든 카페리스트 가져오기 ( 내가 Manager인 카페 보기)
     @Transactional
     @Override
     public Page<CafeResponse> getAllCafeByManagerId(Long managerId, Pageable pageRequest) {
