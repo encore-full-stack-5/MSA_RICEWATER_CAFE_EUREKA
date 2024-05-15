@@ -1,6 +1,7 @@
 package com.example.comment.service;
 
 import com.example.comment.dto.request.CommentRequest;
+import com.example.comment.dto.response.ChatGptResponse;
 import com.example.comment.dto.response.CommentResponse;
 import com.example.comment.exception.CommentIdNotFoundException;
 import com.example.comment.global.domain.entity.Comment;
@@ -18,11 +19,12 @@ import java.util.Optional;
 public class CommentServiceImpl implements CommentService {
 
     private final CommentRepository commentRepository;
+    private final ChatGptService chatGptService;
 
     // 게시글 내 댓글 조회
     @Override
     public List<CommentResponse> getCommentByBoardId(Long boardId, Pageable pageable) {
-        List<Comment> all = commentRepository.findByBoardId(boardId, pageable);
+        List<Comment> all = commentRepository.findByBoardIdAndVisibility(boardId,true, pageable);
         return all.stream().map(CommentResponse::from).toList();
     }
 
@@ -38,8 +40,11 @@ public class CommentServiceImpl implements CommentService {
     @Override
     @Transactional
     public void createComment(CommentRequest commentRequest) {
+        // gpt로 비속어가 포함되어 있는지 확인
+        ChatGptResponse response = chatGptService.getResponse(commentRequest.content());
+        if(response.getContent().toLowerCase().contains("false")) commentRepository.save(commentRequest.toEntity(false));
+        else commentRepository.save(commentRequest.toEntity(true));
         // boardId가 없으면 에러처리
-        commentRepository.save(commentRequest.toEntity());
     }
 
     // 댓글 수정
