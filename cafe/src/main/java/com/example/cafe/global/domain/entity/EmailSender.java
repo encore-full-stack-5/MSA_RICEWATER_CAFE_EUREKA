@@ -1,20 +1,27 @@
 package com.example.cafe.global.domain.entity;
 
-import com.example.cafe.dto.request.CafeRequest;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 import javax.mail.*;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 @Configuration
+@Component
 public class EmailSender {
+    @Value("${mail.sender}")
+    private String mailSender;
+
+    @Value("${mail.password}")
+    private String mailPassword;
+
     public void emailSender(String name, String email, String cafeName) throws MessagingException {
         String to = email; // 받는 사람의 이메일 주소
-        String from = "이메일"; // 보내는 사람의 이메일 주소
-        String password = "비밀번호"; // 보내는 사람의 이메일 계정 비밀번호
+        String from = mailSender; // 보내는 사람의 이메일 주소
+        String password = mailPassword; // 보내는 사람의 이메일 계정 비밀번호
         String host = "smtp.gmail.com"; // 구글 메일 서버 호스트 이름
 
         // SMTP 프로토콜 설정

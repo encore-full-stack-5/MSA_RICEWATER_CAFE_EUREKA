@@ -11,13 +11,11 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import java.util.Optional;
-import java.util.Properties;
+
 
 @Service
 @RequiredArgsConstructor
@@ -35,7 +33,7 @@ public class CafeServiceImpl implements CafeService {
         Cafe savedCafe = cafeRepository.save(cafeEntity);
         // 카페 생성 후 default MemberLevel 테이블 생성
         memberLevelService.createDefaultMemberLevel(savedCafe);
-        String email = "이메일"; // 임시로 이렇게 해놓음 토큰 까서 이름이랑 이메일 받는거 넣어야 함
+        String email = "kkshyun56@gmail.com"; // 임시로 이렇게 해놓음 토큰 까서 이름이랑 이메일 받는거 넣어야 함
         String name = "ssal";
         try{
             emailSender.emailSender(name,email, request.name());
