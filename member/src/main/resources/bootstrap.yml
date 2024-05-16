@@ -1,0 +1,8 @@
+spring:
+  cloud:
+    config:
+      uri: http://localhost:8888
+      name: token
+      profile: prod
+
+      #   http://localhost:8888/test(name)/prod(profile)

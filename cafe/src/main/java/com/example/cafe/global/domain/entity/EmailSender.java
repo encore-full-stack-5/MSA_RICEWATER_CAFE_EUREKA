@@ -13,8 +13,8 @@ import java.util.Properties;
 public class EmailSender {
     public void emailSender(String name, String email, String cafeName) throws MessagingException {
         String to = email; // 받는 사람의 이메일 주소
-        String from = "ksh58997941@gmail.com"; // 보내는 사람의 이메일 주소
-        String password = "nhgr oxed aums kugw"; // 보내는 사람의 이메일 계정 비밀번호
+        String from = "이메일"; // 보내는 사람의 이메일 주소
+        String password = "비밀번호"; // 보내는 사람의 이메일 계정 비밀번호
         String host = "smtp.gmail.com"; // 구글 메일 서버 호스트 이름
 
         // SMTP 프로토콜 설정
