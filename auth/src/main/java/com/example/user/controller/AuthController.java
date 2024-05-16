@@ -14,12 +14,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/auth")
 public class AuthController {
     private final AuthService authService;
-    private final TokenService tokenService;
 
     @PostMapping("login")
     public SignInResponse login(@RequestHeader("Authorization") String token){
-        UserDto userInfoFromToken = tokenService.getUserInfoFromToken(token);
-        return authService.insertUser(userInfoFromToken);
+        return authService.insertUser(token);
     }
 
     @PostMapping("/refresh")

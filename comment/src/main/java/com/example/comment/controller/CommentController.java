@@ -43,9 +43,7 @@ public class CommentController {
 
     // 게시글에 댓글을 추가한다
     @PostMapping
-    public void createComment(
-            @RequestBody CommentRequest commentRequest
-    ) {
+    public void createComment(@RequestBody CommentRequest commentRequest) {
         commentService.createComment(commentRequest);
     }
 

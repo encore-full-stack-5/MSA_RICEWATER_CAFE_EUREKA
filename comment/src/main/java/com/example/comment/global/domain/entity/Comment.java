@@ -27,4 +27,6 @@ public class Comment {
     private Long boardId;
     @Column(name = "MEMBER_ID")
     private Long memberId;
+    @Column(name = "VISIBILITY")
+    private Boolean visibility;
 }
