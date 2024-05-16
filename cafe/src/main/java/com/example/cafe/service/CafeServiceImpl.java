@@ -35,7 +35,7 @@ public class CafeServiceImpl implements CafeService {
         Cafe savedCafe = cafeRepository.save(cafeEntity);
         // 카페 생성 후 default MemberLevel 테이블 생성
         memberLevelService.createDefaultMemberLevel(savedCafe);
-        String email = "kkshyun56@gmail.com"; // 임시로 이렇게 해놓음 토큰 까서 이름이랑 이메일 받는거 넣어야 함
+        String email = "이메일"; // 임시로 이렇게 해놓음 토큰 까서 이름이랑 이메일 받는거 넣어야 함
         String name = "ssal";
         try{
             emailSender.emailSender(name,email, request.name());
