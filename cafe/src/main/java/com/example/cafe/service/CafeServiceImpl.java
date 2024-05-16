@@ -5,6 +5,7 @@ import com.example.cafe.dto.response.CafeResponse;
 import com.example.cafe.excrption.NotFoundCafeException;
 import com.example.cafe.global.domain.entity.Cafe;
 import com.example.cafe.global.domain.entity.EmailSender;
+import com.example.cafe.global.domain.entity.UserDto;
 import com.example.cafe.global.domain.repository.CafeRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -33,8 +34,9 @@ public class CafeServiceImpl implements CafeService {
         Cafe savedCafe = cafeRepository.save(cafeEntity);
         // 카페 생성 후 default MemberLevel 테이블 생성
         memberLevelService.createDefaultMemberLevel(savedCafe);
-        String email = "kkshyun56@gmail.com"; // 임시로 이렇게 해놓음 토큰 까서 이름이랑 이메일 받는거 넣어야 함
-        String name = "ssal";
+        UserDto principal = (UserDto) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String email = principal.getEmail();
+        String name = principal.getNickname();
         try{
             emailSender.emailSender(name,email, request.name());
         } catch(Exception e) {
