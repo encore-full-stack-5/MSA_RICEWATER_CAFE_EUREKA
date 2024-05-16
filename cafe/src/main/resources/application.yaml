@@ -12,7 +12,8 @@ spring:
     properties:
       hibernate:
         format_sql: true
-
+  profiles:
+    active: dev
 ##  메일
 #  mail:
 #    host: smtp.gmail.com

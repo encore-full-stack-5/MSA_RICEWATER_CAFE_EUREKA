@@ -12,4 +12,4 @@ daemon
 jdks
 native
 wrapper
-*/*-dev.yaml
+*/*-dev.*
